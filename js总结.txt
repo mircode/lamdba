@@ -1,0 +1,208 @@
+//////////////
+// 提要
+//////////////
+/**
+一、作用域
+二、面相对象
+三、面相函数
+
+JavaScript绝对多部分的语法结构和Java类似，包括常见的数据类型，这里主要列举和JavaScript不同之处。
+语句：if,for,while,do-with,switch
+类型：Null,Undefined,Boolean,Number,String,Object,Array,Date,RegExp,Function,Math
+类似Java,Boolean,Number,String也是基础数据类型的包装类
+
+**/
+//////////////
+// 一、作用域
+//////////////
+/**
+JavaScript的语法风格和C/C++类似，但是作用域的实现却和C/C++不同，并非采用“堆栈”方式，而是使用的链表实现的。
+**/
+var outer="globe";
+var test=function(){
+
+    var inner1="inner1";
+    var test1=function(args){
+        console.info(args);
+        console.info(inner1); 
+        console.info(outer);
+    };
+
+    return test1;
+};
+var test1=test();
+test1("test1");
+
+//////////////
+// 二、面相对象
+//////////////
+
+// 创建对象-----------------------------
+// 总结: new,{},基于以上两种形式的变种
+
+// 方法1
+var User=function(name,age){
+    this.name=name;
+    this.age=age;
+};
+User.prototype.getName=function(){
+    return this.name;
+};
+User.prototype.getAge=function(){
+    return this.age;
+};
+var user=new User('wgx',20);
+console.info(user.getName());
+
+// 方法2
+var user={};
+user.name=name;
+user.age=age;
+user.getName=function(){
+    return this.name;
+};
+user.getAge=function(){
+    return this.age;
+};
+console.info(user.getName());
+
+// 方法3
+var User=function(name,age){
+    var user={};
+    user.name=name;
+    user.age=age;
+    user.getName=function(){
+        return this.name;
+    };
+    user.getAge=function(){
+        return this.age;
+    };
+    return user;
+};
+var user=User('wgx',20);
+console.info(user.getName());
+
+
+// 继承-----------------------------
+// 总结: 原型和组合
+
+// 原型
+var Animal=function(name){
+    this.name=name;
+};
+Animal.prototype.getName=function(){
+    return this.name;
+}
+var Dog=function(age){
+    this.age=age;
+}
+Dog.prototype=new Animal("狗狗")
+Dog.prototype.constructor=Dog;
+Dog.prototype.getAge=function(){
+    return this.age;
+}
+var dog=new Dog(12);
+console.info(dog.getName());
+console.info(dog.getAge());
+
+
+// 组合
+var animal=new Animal("狗狗");
+var dog=new Dog(21);
+var dog=extend(dog,animal);
+
+function extend(dest,src){
+    for(var key in src){
+         dest[key]=src[key];
+    }
+    return dest;
+}
+
+
+//http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_encapsulation.html
+
+
+//////////////
+// 三、面相函数
+//////////////
+// 高阶函数只是将函数作为参数或返回值的函数
+
+// 函数作为返回值------闭包
+
+var test=function(){
+    var name='test';
+    return function(){
+        console.info(name);
+    };
+}
+var res=test();
+res();
+test()();
+
+// 闭包this指向: 谁调用的函数,this就指向谁
+var name='globe';
+var user={
+    name:'wgx',
+    getName:function(){
+        console.info("user:"+this.name);
+        return function(){
+           console.info("globe:"+this.name); 
+        }
+    }
+}
+user.getName()();
+
+
+// 函数作为参数------回调
+var context={
+    map:{},
+    push:function(event,callback){
+        this.map[event]=callback;
+    },
+    trigger:function(event,args){
+        var callback=this.map[event];
+        callback(args);
+    }
+};
+context.push('click',function(msg){
+    console.info(msg);
+});
+context.trigger('click','hello world');
+
+
+
+// 消参数------------柯里化
+// 抛物线方程: f(x,y)=>x^x-y
+// 判断(2,4)这个点是否在抛物线上,可以采用直接代入验证得0,还可以分步骤验证先代入2,再代入4
+// f(x,y)=>x^x-y ====> f(2,y)=4-y ===> f(y)=4-y ===> f(4)=0
+
+// 原方程
+function f(x,y){
+    return x*x-y;
+};
+f(2,4)==0;
+// 柯里化
+function f(x){
+    return function(y){
+        return x*x-y;
+    }
+};
+f(2)(4)==0;
+
+// 自执行匿名函数
+// f(x,y)=>x-y ==> (x,y)=>x-y ==> ((x,y)=>x-y)(3,4)
+// ()();
+// !function(){}();
+// +function(){}();
+
+
+
+
+// 构造函数
+function A(){};
+// 创建对象
+var a=new A();
+// 上述代码等同于
+var a={};
+a.__proto__=A.prototype;
+A.call(a);

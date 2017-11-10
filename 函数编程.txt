@@ -1,0 +1,41 @@
+## 编程范式 函数式 命令式
+https://yq.aliyun.com/articles/27507?spm=5176.8067842.tagmain.25.ufazcg
+
+## 什么是lamdba
+https://www.zhihu.com/question/21936396
+
+## 函数式编程历史
+http://xight.top/2016/04/06/%E5%87%BD%E6%95%B0%E5%BC%8F%E5%8F%98%E6%88%90%E8%8C%83%E4%BE%8B-1-%E5%8E%86%E5%8F%B2%E4%B8%8E%E6%A6%82%E8%BF%B0/
+
+## 图灵机和lamdba
+http://www.360doc.com/content/17/0526/15/31913486_657470345.shtml
+
+## 自然数
+http://www.ayqy.net/blog/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0_es6%E7%AC%94%E8%AE%B06/
+https://www.h5jun.com/post/Church.html
+
+## 加法
+https://hcyue.me/2016/03/27/%E5%8F%88%E6%98%AF%E4%B8%80%E7%AF%87lambda%E6%BC%94%E7%AE%97%E4%BB%8B%E7%BB%8D-%E8%BF%87%E7%A8%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%B8%80/
+
+
+## Y组合算子
+http://picasso250.github.io/2015/03/31/reinvent-y.html
+https://segmentfault.com/a/1190000008212076
+https://w-angler.com/blog/1/39
+https://www.zhihu.com/question/21099081/answer/18830200
+http://xlbd.me/lambda-calculus/
+http://zzp.me/2013-09-05/y-combinator/
+http://outofmemory.cn/code-snippet/10702/10-program-language-achieve-Y-group-release--function
+
+
+## 总结
+http://www.cnblogs.com/DSharp/p/3789545.html
+
+## lamdba工具
+https://people.eecs.berkeley.edu/~gongliang13/lambda/
+
+## 计算的极限
+http://songshuhui.net/archives/85861
+http://songshuhui.net/archives/tag/%E8%AE%A1%E7%AE%97%E7%9A%84%E6%9E%81%E9%99%90
+
+

@@ -1,0 +1,67 @@
+////////////
+// 自然数
+///////////
+
+// 标准
+ZERO  = λf.λx.x
+ONE   = λf.λx.f(x)
+TWO   = λf.λx.f(f(x))
+TRHEE = λf.λx.f(f(f(x)))
+
+// 简化
+ZERO  = λfx.x
+ONE   = λfx.f(x)
+TWO   = λfx.f(f(x))
+TRHEE = λfx.f(f(f(x)))
+
+// 后继
+SUCC = λn.λf.λx.f(nfx)
+SUCC = λnfx.f(nfx)
+
+// 前驱
+PRED = λn.λf.λx.n(λg.λh.h(gf))(λu.x)(λu.u)
+PRED = λn.n(λg.λk.(g 1)(λu.PLUS(gk)1)k)(λl.0) 0
+
+
+/////////////
+// 算数运算
+/////////////
+
+PLUS = λm.λn.λf.λx.mf(nfx)
+PLUS = λm.λn.m SUCC n
+
+MULT = λm.λn.m (PLUS n) 0
+MULT = λm.λn.λf.m(nf)
+
+/////////////
+// 逻辑运算
+/////////////
+TRUE = λxy.x
+FALSE = λxy.y
+
+NOT = λx.x FALSE TRUE
+AND = λxy.xy FALSE
+OR = λxy.x TRUE y
+IS-ZERO = λ x.x FALSE NOT FALSE
+
+
+/////////////
+// 数据结构
+/////////////
+PAIR = λxy.λf.xy
+FST  = λx.x TRUE
+SED  = λx.x FALSE 
+
+// NEXT = λp.PAIR(SUCC(SED p),SED p)
+// PRED = λn.FST(n(NEXT) (PAIR(ZERO,ZERO)))
+
+/////////////
+// 分支判断
+/////////////
+IF  = λz.λx.λy.zxy
+
+/////////////
+// 递归循环
+/////////////
+WHILE =λnf.nf
+Y = λf.((λx.f(xx))(λx.f(xx)))
